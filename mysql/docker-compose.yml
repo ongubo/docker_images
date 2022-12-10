@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  db:
+    container_name: mysql_container
+    image: mysql
+    restart: always
+    networks:
+      - mysql_network
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
+  phpmyadmin:
+    container_name: phpmyadmin_container
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    networks:
+      - mysql_network
+    ports:
+      - 8080:80
+      - '443:8443'
+    environment:
+      - PMA_ARBITRARY:1
+      - PMA_HOST:mysql
+      - MYSQL_USERNAME:root
+      - MYSQL_ROOT_PASSWORD:root
+
+networks:
+  mysql_network:
