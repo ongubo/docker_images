@@ -6,6 +6,8 @@ services:
     restart: always
     networks:
       - mysql_network
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
 
@@ -17,7 +19,7 @@ services:
       - mysql_network
     ports:
       - 8080:80
-      - '443:8443'
+      - 443:8443
     environment:
       - PMA_ARBITRARY:1
       - PMA_HOST:mysql
