@@ -8,9 +8,11 @@ services:
       - mysql_network
     ports:
       - 3306:3306
+    volumes:
+      - my_cnf:/etc/mysql/conf.d/
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
-
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
   phpmyadmin:
     container_name: phpmyadmin_container
     image: phpmyadmin/phpmyadmin:latest
@@ -28,3 +30,5 @@ services:
 
 networks:
   mysql_network:
+volumes:
+  my_cnf:
