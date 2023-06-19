@@ -1,0 +1,15 @@
+version: '3'
+services:
+  minio:
+    image: minio/minio
+    ports:
+      - 9001:9000
+    environment:
+      - MINIO_ACCESS_KEY=5e1423ba-96e5-4388-a135-05dd18221067
+      - MINIO_SECRET_KEY=5e1423ba-96e5-4388-a135-05dd18221067secret
+    volumes:
+      - minio-data:/data
+    command: server /data
+
+volumes:
+  minio-data:
