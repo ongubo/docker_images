@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 services:
   db:
     container_name: mysql_container
@@ -10,9 +10,10 @@ services:
       - 3306:3306
     volumes:
       - my_cnf:/etc/mysql/conf.d/
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf # Mount custom MySQL configuration
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_HOST: "%"
   phpmyadmin:
     container_name: phpmyadmin_container
     image: phpmyadmin/phpmyadmin:latest
@@ -23,11 +24,11 @@ services:
       - 8080:80
       - 443:8443
     environment:
-      - PMA_ARBITRARY:1
-      - PMA_HOST:mysql
-      - MYSQL_USERNAME:root
-      - MYSQL_ROOT_PASSWORD:root
-
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=root
+      - UPLOAD_LIMIT=900M
 networks:
   mysql_network:
 volumes:

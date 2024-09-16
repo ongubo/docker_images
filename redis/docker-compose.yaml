@@ -1,6 +1,17 @@
-version: '3'
+version: "3.8"
 services:
   redis:
-    image: redis
+    container_name: redis_container
+    image: redis:latest
+    restart: always
     ports:
-      - 6379:6379
+      - "6379:6379"
+
+  redis-insight:
+    container_name: redis_insight_container
+    image: redislabs/redisinsight:latest
+    restart: always
+    environment:
+      REDIS_INSIGHT_AUTH: "false"
+    ports:
+      - "5540:5540"
