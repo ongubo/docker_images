@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   pgadmin:
     container_name: pgadmin4_container
@@ -20,8 +19,8 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-  volumes:
-    develop:
+volumes:
+  pgdata:
 networks:
   default:
     driver: bridge
